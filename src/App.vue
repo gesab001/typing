@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <input name="product_id" v-bind:value="productId"> 
-    <HelloWorld msg="Jesus" score="Score" progress="Progress" letters="letters"/>
+    <HelloWorld msg="Welcome to Typing Game" score="Score" progress="Progress" letters="letters"/>
 	
   </div>
 </template>
