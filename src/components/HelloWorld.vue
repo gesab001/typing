@@ -1,16 +1,21 @@
 <template>
   <div v-on:keypress="popBallon" id="canvas" class="hello">
     <h1>{{ msg }}</h1>
+	<h2>{{score}}</h2>
+	<h3>{{progress}}</h3>
+    <input id="word"/>
 	<button v-on:click="start">start game</button>
   </div>
 </template>
 
 <script>
+
 var ballons = [];
 
 function createABallon(){
 	var ballon = document.createElement('div');
-	var letters = ["F", "J"];
+	var word = document.getElementById("word").value;
+	var letters = word.toUpperCase().split("");
 	var index = Math.floor(Math.random() * letters.length);  
 	ballon.innerHTML = letters[index];
 	
@@ -27,11 +32,6 @@ function createABallon(){
 	ballon.style.fontSize= "30px";
 	ballons.push({"item": ballon, "counter": 0});
 }
-
-setInterval(function(){
- createABallon();
- 
-}, 5000);
 
 
 function startGame() {
@@ -53,6 +53,7 @@ function pop(event){
  //alert("ballon pop" + event.key.toUpperCase());
  if (event.key.toUpperCase()==ballons[0].item.innerHTML){
    ballons[0].item.style.display = "none";
+   
    ballons.shift();
    startGame();
    
@@ -62,6 +63,9 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String,
+	score: String,
+	progress: String,
+	letters: String
   },
   methods: {
     start: function () {
@@ -70,7 +74,10 @@ export default {
     popBallon: function(event){
       pop(event);
 	}
+
   }
+  
+	
 }
 
 </script>
